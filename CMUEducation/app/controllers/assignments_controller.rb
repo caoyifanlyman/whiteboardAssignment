@@ -1,7 +1,6 @@
 class AssignmentsController < ApplicationController
   # GET /assignments
   # GET /assignments.xml
-  before_filter :authenticate_user!
   before_filter :get_course
   before_filter :render_grade_book_menu
 
@@ -31,11 +30,6 @@ class AssignmentsController < ApplicationController
   def new
     @assignment = Assignment.new
     authorize! :update, @course
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml { render :xml => @assignment }
-    end
   end
 
   # GET /assignments/1/edit
@@ -106,7 +100,7 @@ class AssignmentsController < ApplicationController
 
     @assignment.destroy
     respond_to do |format|
-      format.js
+      format.html
     end
   end
 

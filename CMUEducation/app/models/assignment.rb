@@ -24,7 +24,6 @@ class Assignment < ActiveRecord::Base
   attr_accessor :date, :hour, :minute
 
   validates :maximum_score, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
-  validates_presence_of :course_id
   validates_inclusion_of :is_team_deliverable, :is_submittable, :in => [true, false]
 
   belongs_to :course
@@ -65,7 +64,7 @@ class Assignment < ActiveRecord::Base
   def get_student_deliverable student_id
     if self.is_team_deliverable?
       team = User.find(student_id).teams.find_by_course_id(self.course_id)
-      unless team.nil?
+      if team.nil?
         self.deliverables.find_by_team_id(team.id)
       end
     else

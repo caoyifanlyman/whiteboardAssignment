@@ -33,7 +33,6 @@ class GradingRule < ActiveRecord::Base
                   :A_grade_min,
                   :A_minus_grade_min,
                   :B_plus_grade_min,
-                  :B_grade_min,
                   :B_minus_grade_min,
                   :C_plus_grade_min,
                   :C_grade_min,
